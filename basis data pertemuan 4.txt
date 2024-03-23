@@ -1,0 +1,30 @@
+//Mengisi data jabatan
+INSERT INTO jabatan VALUES
+    -> ('','Manager'),
+    -> ('','Direktur'),
+    -> ('','Staff');
+
+//Menambah data jabatan
+INSERT INTO jabatan VALUES
+    -> ('','Supervisor');
+
+//Melihat data table
+SELECT * FROM jabatan;
+SELECT * FROM pegawai;
+
+//Mengisi data di form
+INSERT INTO pegawai
+    -> (nip, nama, email, jabatan_id, tgl_lahir)
+    -> VALUES
+    -> ('0110223151', 'Kafi', 'kafirs75@gmail.com', 1, '2005-05-06');
+
+//Memperbarui data jabatan
+UPDATE jabatan SET nama = 'Kepala Gudang'
+    -> WHERE id = 4;
+
+//Menghapus data jabatan
+DELETE FROM jabatan WHERE id = 4;
+
+//Memperbarui data pegawai
+UPDATE pegawai SET nip = '2003'
+    -> WHERE nip = 2002;
