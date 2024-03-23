@@ -1,0 +1,10 @@
+PERTEMUAN PERTAMA
+
+// query ini untuk melihat database
+SHOW DATABASES;
+
+// membuat database 
+CREATE DATABASE ti05;
+
+// menghapus database
+DROP DATABASE ti05;
