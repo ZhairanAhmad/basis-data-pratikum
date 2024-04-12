@@ -1,0 +1,53 @@
+// menampilkan produk dengan stok terbanyak
+SELECT * FROM produk WHERE stok =
+    -> (SELECT MAX(stok) AS stok_terbanyak FROM produk);
+
+// menampilkan produk dengan stok terdikit
+SELECT * FROM produk WHERE stok =
+    -> (SELECT MIN(stok) AS stok_terdikit FROM produk);
+
+// menampilkan produk berawalan dari huruf "t"
+SELECT * FROM produk WHERE nama
+    -> LIKE 't%';
+
+// menampilkan produk berawalan dari huruf "k"
+SELECT * FROM produk WHERE nama
+    -> LIKE '%k';
+
+// menampilkan produk mengandung kata "note"
+SELECT * FROM produk WHERE nama
+    -> LIKE '%note%';
+
+// menampilkan produk yang huruf keduanya "a"
+SELECT * FROM produk WHERE nama
+    -> LIKE '_a%';
+
+// menampilkan ragam dari kolom harga beli
+SELECT DISTINCT harga_beli FROM produk;
+
+// menampilkan keterangan berdasarkan jumlah stok
+SELECT nama, harga_beli, harga_jual, stok,
+    -> CASE
+    -> WHEN stok <= 5 THEN 'Stok Menipis'
+    -> WHEN stok > 5 AND stok < 10 THEN 'Stok Tercukupi'
+    -> ELSE 'Stok Aman'
+    -> END AS keterangan
+    -> FROM produk;
+
+// menampilkan jumlah stok berdasarkan jenis_produk_id
+SELECT jenis_produk_id, SUM(stok) AS total FROM produk
+    -> GROUP BY jenis_produk_id;
+
+SELECT jenis_produk_id,
+    -> CASE
+    -> WHEN jenis_produk_id = 1 THEN 'Elektronik'
+    -> WHEN jenis_produk_id = 2 THEN 'Furniture'
+    -> WHEN jenis_produk_id = 4 THEN 'Minuman'
+    -> ELSE 'Makanan'
+    -> END AS kategori
+    -> , SUM(stok) AS total FROM produk
+    -> GROUP BY jenis_produk_id;
+
+//menampilkan stok berdasarkan jenis produk dimana stok lebih dari 30
+SELECT jenis_produk_id, SUM(stok) AS total FROM produk
+    -> GROUP BY jenis_produk_id HAVING total > 30;
